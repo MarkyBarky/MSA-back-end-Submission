@@ -7,10 +7,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MSA.backend.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace MSA.backend.Api
 {
@@ -31,6 +33,9 @@ namespace MSA.backend.Api
                 client.BaseAddress = new Uri("https://pokeapi.co/api/v2/");
             });
             services.AddControllers();
+            services.AddDbContext<IWebAPIDBContext, WebAPIDBContext>(options => options.UseSqlite(Configuration.GetConnectionString("ConnectionString")));
+            
+            services.AddScoped<iDbRepo, DbRepo>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MSA.backend.Api", Version = "v1" });
@@ -46,12 +51,12 @@ namespace MSA.backend.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
                 
-                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MSA.backend.Api v1"));
-            }
+            //    //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MSA.backend.Api v1"));
+            //}
 
             app.UseHttpsRedirection();
 

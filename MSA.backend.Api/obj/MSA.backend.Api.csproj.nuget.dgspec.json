@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chall\\source\\repos\\MSA.backend.Api\\MSA.backend.Api.csproj": {}
+    "C:\\Users\\chall\\Desktop\\MSA-back-end-Submission\\MSA.backend.Api\\MSA.backend.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chall\\source\\repos\\MSA.backend.Api\\MSA.backend.Api.csproj": {
+    "C:\\Users\\chall\\Desktop\\MSA-back-end-Submission\\MSA.backend.Api\\MSA.backend.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chall\\source\\repos\\MSA.backend.Api\\MSA.backend.Api.csproj",
+        "projectUniqueName": "C:\\Users\\chall\\Desktop\\MSA-back-end-Submission\\MSA.backend.Api\\MSA.backend.Api.csproj",
         "projectName": "MSA.backend.Api",
-        "projectPath": "C:\\Users\\chall\\source\\repos\\MSA.backend.Api\\MSA.backend.Api.csproj",
+        "projectPath": "C:\\Users\\chall\\Desktop\\MSA-back-end-Submission\\MSA.backend.Api\\MSA.backend.Api.csproj",
         "packagesPath": "C:\\Users\\chall\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chall\\source\\repos\\MSA.backend.Api\\obj\\",
+        "outputPath": "C:\\Users\\chall\\Desktop\\MSA-back-end-Submission\\MSA.backend.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\chall\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,30 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite.Core": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
             "NSwag.AspNetCore": {
               "target": "Package",
               "version": "[13.16.1, )"

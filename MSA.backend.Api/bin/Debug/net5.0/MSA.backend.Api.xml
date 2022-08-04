@@ -4,49 +4,5 @@
         <name>MSA.backend.Api</name>
     </assembly>
     <members>
-        <member name="M:MSA.backend.Api.Controllers.PokemonController.GetSum(System.Int32,System.Int32)">
-            <summary>
-            Adds two numbers together
-            </summary>
-            <param name="left">The number on the left, which must be a positive integer</param>
-            <param name="right">The number on the right, which must be a positive integer</param>
-            <returns>The sum of the input numbers</returns>
-        </member>
-        <member name="M:MSA.backend.Api.Controllers.PokemonController.GetNumber">
-            <summary>
-            Generates a random number
-            </summary>
-            <returns>A random number</returns>
-        </member>
-        <member name="M:MSA.backend.Api.Controllers.PokemonController.DemonstratePost">
-            <summary>
-            Demonstrates posting action
-            </summary>
-            <returns>A 201 Created response</returns>
-        </member>
-        <member name="M:MSA.backend.Api.Controllers.PokemonController.DemonstratePut">
-            <summary>
-            Demonstrates put action
-            </summary>
-            <returns>A 201 Created Response></returns>
-        </member>
-        <member name="M:MSA.backend.Api.Controllers.PokemonController.DemonstrateDelete">
-            <summary>
-            Demonstrates a delete action
-            </summary>
-            <returns>A 204 No Content Response</returns>
-        </member>
-        <member name="T:MSA.backend.Api.Controllers.WeatherForecastController">
-            <summary>
-            This is the weather forecast controller that comes as a default from the project template when creating
-            a new c# Web API application.
-            </summary>
-        </member>
-        <member name="M:MSA.backend.Api.Controllers.WeatherForecastController.Get">
-            <summary>
-            This endpoint takes no arguments, and gives you the weather forecast
-            </summary>
-            <returns>A JSON object describing the weather forecast</returns>
-        </member>
     </members>
 </doc>

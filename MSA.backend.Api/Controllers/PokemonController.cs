@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MSA.backend.Data;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -11,68 +12,54 @@ namespace MSA.backend.Api.Controllers
     public class PokemonController : ControllerBase
     {
         private readonly HttpClient _client;
-        public PokemonController(IHttpClientFactory clientFactory)
+        private readonly iDbRepo _repo;
+        public PokemonController(IHttpClientFactory clientFactory, iDbRepo repo)
         {
             if (clientFactory is null)
             {
                 throw new ArgumentNullException(nameof(clientFactory));
             }
             _client = clientFactory.CreateClient("pokemon");
+            _repo = repo;
         }
-        /// <summary>
-        /// Adds two numbers together
-        /// </summary>
-        /// <param name="left">The number on the left, which must be a positive integer</param>
-        /// <param name="right">The number on the right, which must be a positive integer</param>
-        /// <returns>The sum of the input numbers</returns>
-        [HttpGet]
-        [Route("add")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
-        public IActionResult GetSum(int left, int right)
-        {
-            if (left < 0 || right < 0) return BadRequest("The inputs must be greater than zero");
-
-            return Ok(left + right);
-        }
+        
+        
         [HttpGet]
         [Route("GetPokemon")]
         [ProducesResponseType(200)]
-        public async Task<IActionResult> GetRawRedditHotPosts()
+        public async Task<IActionResult> GetRawPokemonData()
         {
             var res = await _client.GetAsync("pokemon/");
             var content = await res.Content.ReadAsStringAsync();
             return Ok(content);
         }
 
-        /// <summary>
-        /// Generates a random number
-        /// </summary>
-        /// <returns>A random number</returns>
-        [HttpGet]
-        [ProducesResponseType(200)]
-        public IActionResult GetNumber()
-        {
-            return Ok(new Random().NextDouble());
-        }
 
-        /// <summary>
-        /// Demonstrates posting action
-        /// </summary>
-        /// <returns>A 201 Created response</returns>
         [HttpPost]
         [ProducesResponseType(201)]
-        public IActionResult DemonstratePost()
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> getMoves(string name)
         {
-            Console.WriteLine("I'm doing some work right now to create a new thing...");
+            var res = await _client.GetAsync("pokemon/" + name);
+            var content = await res.Content.ReadAsStringAsync();
+            if (content == "Not Found")
+            {
+                return NotFound("not a move!");
+            }
+            int begin = content.IndexOf("moves") + 8;
+            string result1 = content.Substring(begin);
+            int finish = result1.IndexOf("version_group_details");
+            var comb = result1.Substring(begin, finish);
+            int start = result1.IndexOf("name\":\"") + ("name\":\"").Length;
+            int end = result1.IndexOf("\",");
+            var comb2 = comb.Substring(start, end);
 
-            return Created(new Uri("https://www.google.com"), "Hi There");
+            return Created(new Uri("https://www.google.com"), comb2);
+
+
+
         }
 
-        /// <summary>
-        /// Demonstrates put action
-        /// </summary>
-        /// <returns>A 201 Created Response></returns>
         [HttpPut]
         [ProducesResponseType(201)]
         public IActionResult DemonstratePut()
@@ -82,10 +69,7 @@ namespace MSA.backend.Api.Controllers
             return Created(new Uri("https://www.google.com"), "Hi There");
         }
 
-        /// <summary>
-        /// Demonstrates a delete action
-        /// </summary>
-        /// <returns>A 204 No Content Response</returns>
+        
         [HttpDelete]
         [ProducesResponseType(204)]
         public IActionResult DemonstrateDelete()
