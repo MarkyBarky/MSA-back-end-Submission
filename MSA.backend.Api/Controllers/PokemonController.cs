@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MSA.backend.Api.Model;
 using MSA.backend.Data;
 using System;
 using System.Net.Http;
@@ -49,12 +50,16 @@ namespace MSA.backend.Api.Controllers
             int begin = content.IndexOf("moves") + 8;
             string result1 = content.Substring(begin);
             int finish = result1.IndexOf("version_group_details");
-            var comb = result1.Substring(begin, finish);
-            int start = result1.IndexOf("name\":\"") + ("name\":\"").Length;
-            int end = result1.IndexOf("\",");
+            var comb = result1.Substring(0, finish);
+            int start = comb.IndexOf("name\":\"") + ("name\":\"").Length;
+            int end = comb.Substring(start).IndexOf("\",");
             var comb2 = comb.Substring(start, end);
 
-            return Created(new Uri("https://www.google.com"), comb2);
+            Move skill = new Move { move = comb2};
+            _repo.addMoves(skill);
+
+
+            return Created(new Uri("https://www.google.com"), skill);
 
 
 

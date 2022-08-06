@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.AspNetCore.Mvc;
 using MSA.backend.Model;
+using MSA.backend.Api.Model;
 
 namespace MSA.backend.Data
 {
@@ -26,6 +27,13 @@ namespace MSA.backend.Data
         {
             pokemon pokemon = _dbContext.pokemons.FirstOrDefault(e => e.name == name);
             return pokemon;
+        }
+        public Move addMoves(Move move)
+        {
+            EntityEntry<Move> e = _dbContext.moves.Add(move);
+            Move c = e.Entity;
+            _dbContext.SaveChanges();
+            return c;
         }
 
        

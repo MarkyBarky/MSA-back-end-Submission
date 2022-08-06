@@ -7,6 +7,17 @@ namespace MSA.backend.Api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "moves",
+                columns: table => new
+                {
+                    move = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_moves", x => x.move);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "pokemons",
                 columns: table => new
                 {
@@ -22,6 +33,9 @@ namespace MSA.backend.Api.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "moves");
+
             migrationBuilder.DropTable(
                 name: "pokemons");
         }

@@ -15,6 +15,16 @@ namespace MSA.backend.Api.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.17");
 
+            modelBuilder.Entity("MSA.backend.Api.Model.Move", b =>
+                {
+                    b.Property<string>("move")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("move");
+
+                    b.ToTable("moves");
+                });
+
             modelBuilder.Entity("MSA.backend.Model.pokemon", b =>
                 {
                     b.Property<string>("name")
