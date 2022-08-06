@@ -60,28 +60,23 @@ namespace MSA.backend.Api.Controllers
 
 
             return Created(new Uri("https://www.google.com"), skill);
-
-
-
-        }
-
-        [HttpPut]
-        [ProducesResponseType(201)]
-        public IActionResult DemonstratePut()
+         }
+        [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public IActionResult GetMovesByName(string name)
         {
-            Console.WriteLine("I'm over-writing whatever was there in the first place...");
-
-            return Created(new Uri("https://www.google.com"), "Hi There");
+            Move moves = _repo.GetMoveByName(name);
+            if (moves == null)
+                return NotFound("No move with this pokemon name " + name.ToString());
+            else
+            {
+                return Ok(moves);
+            }
         }
 
+       
         
-        [HttpDelete]
-        [ProducesResponseType(204)]
-        public IActionResult DemonstrateDelete()
-        {
-            Console.WriteLine("I'm removing something from the database...");
-
-            return NoContent();
-        }
+       
     }
 }

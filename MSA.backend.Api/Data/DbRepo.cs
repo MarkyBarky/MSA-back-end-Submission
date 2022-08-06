@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.AspNetCore.Mvc;
-using MSA.backend.Model;
+
 using MSA.backend.Api.Model;
 
 namespace MSA.backend.Data
@@ -18,15 +17,11 @@ namespace MSA.backend.Data
             _dbContext = dbContext;
         }
 
-        public IEnumerable<pokemon> GetPokemon()
+
+        public Move GetMoveByName(string name)
         {
-            IEnumerable<pokemon> pokemons = _dbContext.pokemons.ToList<pokemon>();
-            return pokemons;
-        }
-        public pokemon GetPokemonByName(string name)
-        {
-            pokemon pokemon = _dbContext.pokemons.FirstOrDefault(e => e.name == name);
-            return pokemon;
+            Move moves = _dbContext.moves.FirstOrDefault(e => e.move == name);
+            return moves;
         }
         public Move addMoves(Move move)
         {
@@ -34,9 +29,7 @@ namespace MSA.backend.Data
             Move c = e.Entity;
             _dbContext.SaveChanges();
             return c;
-        }
-
-       
+        }   
 
         
 

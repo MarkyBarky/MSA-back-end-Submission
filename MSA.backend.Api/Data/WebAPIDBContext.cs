@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MSA.backend.Api.Model;
-using MSA.backend.Model;
+
 
 
 namespace MSA.backend.Data
@@ -15,8 +15,10 @@ namespace MSA.backend.Data
             Database.EnsureCreated();        
         }
         public DbSet<Move> moves { get; set; }
-        public DbSet<pokemon> pokemons { get; set; }
+
        
+
+
 
     }
 }
