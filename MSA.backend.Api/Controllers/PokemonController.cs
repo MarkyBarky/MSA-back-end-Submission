@@ -103,6 +103,27 @@ namespace MSA.backend.Api.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("updateMove")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult updateMoves(string moveName, string pokemonName)
+        {
+            Move m = _repo.GetMoveByName(moveName);
+            if (m != null)
+            {
+                Move newMove = new Move { move = moveName, name = pokemonName };
+                Move powerfulMove = _repo.updateMoves(newMove);
+
+                return Ok(powerfulMove);
+            }
+            else
+            {
+                return BadRequest("The pokemon " + moveName + " does not exist.");
+            }
+
+        }
+
 
 
 

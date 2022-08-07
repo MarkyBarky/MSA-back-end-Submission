@@ -11,6 +11,8 @@ namespace MSA.backend.Api.Model
         [Key]
         public string move { get; set; }
 
+        public string name { get; set; }
+
         
     }
 }

@@ -20,7 +20,12 @@ namespace MSA.backend.Data
 
         public Move GetMoveByName(string name)
         {
+            
             Move moves = _dbContext.moves.FirstOrDefault(e => e.move == name);
+            if (moves == null)
+            {
+                return null;
+            }
             return moves;
         }
         public Move addMoves(Move move)
@@ -38,6 +43,18 @@ namespace MSA.backend.Data
             _dbContext.SaveChanges();
             
         }
+        public Move updateMoves(Move move)
+        {
+
+            Move m = GetMoveByName(move.move);
+            if (m != null)
+            {
+                m.name = move.name;
+                _dbContext.SaveChanges();
+            }
+            return m;
+        }
+
         
 
         public void SaveChanges()
