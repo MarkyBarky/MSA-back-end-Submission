@@ -38,14 +38,14 @@ namespace MSA.backend.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(201)]
-        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> getMoves(string name)
         {
             var res = await _client.GetAsync("pokemon/" + name);
             var content = await res.Content.ReadAsStringAsync();
             if (content == "Not Found")
             {
-                return NotFound("not a move!");
+                return NotFound("not a pokemon!");
             }
             int begin = content.IndexOf("moves") + 8;
             string result1 = content.Substring(begin);
@@ -56,23 +56,32 @@ namespace MSA.backend.Api.Controllers
             var comb2 = comb.Substring(start, end);
 
             Move skill = new Move { move = comb2};
-            _repo.addMoves(skill);
+            
+            if (_repo.GetMoveByName(skill.move) != null)
+            {
+                return NotFound("already in the skillset!");
+            }
+            Move ability = _repo.addMoves(skill);
 
 
-            return Created(new Uri("https://www.google.com"), skill);
-         }
+            return Created(new Uri("https://localhost:44346/Pokemon/Pokemon_getMoves?name=" + skill.move),
+                    ability);
+
+        }
         [HttpGet]
+        [Route("getMoves")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public IActionResult GetMovesByName(string name)
         {
             Move moves = _repo.GetMoveByName(name);
             if (moves == null)
-                return NotFound("No move with this pokemon name " + name.ToString());
+                return NotFound("No pokemon with the move " + name.ToString());
             else
             {
                 return Ok(moves);
             }
+
         }
 
        
