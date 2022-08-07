@@ -31,6 +31,13 @@ namespace MSA.backend.Data
             return c;
         }   
 
+        public void deleteMoves(Move move)
+        {
+           
+            _dbContext.moves.Remove(move);
+            _dbContext.SaveChanges();
+            
+        }
         
 
         public void SaveChanges()

@@ -37,6 +37,7 @@ namespace MSA.backend.Api.Controllers
 
 
         [HttpPost]
+        [Route("addMoveByName")]
         [ProducesResponseType(201)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> getMoves(string name)
@@ -84,8 +85,26 @@ namespace MSA.backend.Api.Controllers
 
         }
 
-       
-        
-       
+        [HttpDelete]
+        [Route("deleteMove")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult deleteMove(string name)
+        {
+            Move m = _repo.GetMoveByName(name);
+            if (m != null)
+            {
+                _repo.deleteMoves(m);
+                return NoContent();
+            }
+            else
+            {
+                return BadRequest("The move " + name + " does not exist.");
+            }
+        }
+
+
+
+
     }
 }

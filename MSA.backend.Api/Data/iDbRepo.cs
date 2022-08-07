@@ -17,6 +17,8 @@ namespace MSA.backend.Data
         Move addMoves(Move moves);
 
         Move GetMoveByName(string name);
+
+        void deleteMoves(Move moves);
         
     }
 }
