@@ -17,7 +17,9 @@ namespace UnitTest
     [TestFixture]
     public class Tests
     {
-        
+
+        PokemonController controller = null;
+        iDbRepo repo = null;
         IHttpClientFactory client = null;
         IWebAPIDBContext dbContextMock = null;
 
@@ -43,8 +45,10 @@ namespace UnitTest
             dbContextMock = Substitute.For<IWebAPIDBContext>();
             dbContextMock.moves.Returns(mockSet);
 
-       
-           
+            repo = Substitute.For<DbRepo>(dbContextMock);
+            client = Substitute.For<IHttpClientFactory>();
+            controller = new PokemonController(client, repo);
+
         }
 
         [Test]
@@ -52,5 +56,62 @@ namespace UnitTest
         {
             Assert.Pass();
         }
+
+        [Test]
+        public async Task Delete()
+        {
+            var deleted = false;
+            
+            var repos = Substitute.For<iDbRepo>();
+            
+            repos.When(x => x.deleteMoves(Arg.Any<Move>()))
+                .Do(x => deleted=true);
+            repos.GetMoveByName("mega-punch")
+                .Returns(new Move { move = "mega-punch", name = "snorlax"});
+            var con = new PokemonController(client, repos);
+
+            IActionResult deletedMove = con.deleteMove("mega-punch");
+            Assert.IsNotNull(deletedMove);
+
+            IActionResult notDeleted = con.deleteMove("belly-drum");
+            Assert.IsNotNull(notDeleted);
+
+            Assert.AreEqual(true, deleted);
+        }
+
+        [Test]
+        public async Task Test_Repository_and_DBContext()
+        {
+            var data = repo.GetMoveByName("mega-punch");
+            Assert.AreEqual("mega-punch", data.move);
+        }
+
+        [Test]
+        public async Task getMove()
+        {
+
+            
+
+            var repos = Substitute.For<iDbRepo>();
+
+         
+            repos.GetMoveByName("mega-punch").Returns(new Move { move = "mega-punch", name = "snorlax" });
+            var con = new PokemonController(client, repos);
+
+            IActionResult gottenMove = con.GetMovesByName("mega-punch");
+            Assert.IsNotNull(gottenMove);
+
+            var result1 = ((Move)((ObjectResult)gottenMove).Value);
+
+            IActionResult notAMove = con.GetMovesByName("belly-drum");
+            Assert.IsNotNull(notAMove);
+
+            var result2 = ((string)((ObjectResult)notAMove).Value);
+
+            Assert.AreEqual("mega-punch", result1.move);
+            Assert.AreEqual("No pokemon with the move belly-drum", result2);
+
+        }
+
     }
 }
