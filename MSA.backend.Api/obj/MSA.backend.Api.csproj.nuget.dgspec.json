@@ -40,6 +40,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.1, )"
+            },
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -64,9 +72,21 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.18.2, )"
+            },
+            "NSubstitute": {
+              "target": "Package",
+              "version": "[4.4.0, )"
+            },
             "NSwag.AspNetCore": {
               "target": "Package",
               "version": "[13.16.1, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[2.6.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
