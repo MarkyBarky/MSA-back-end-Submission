@@ -17,7 +17,7 @@
         </member>
         <member name="M:MSA.backend.Api.Controllers.PokemonController.GetMovesByName(System.String)">
             <summary>
-            This function stores the data
+            This function stores the pokemon move
             </summary>
             <param name="name"></param>
             <returns></returns>
