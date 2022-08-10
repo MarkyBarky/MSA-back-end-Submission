@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace MSA.backend.Api.Controllers
 {
-
+    /// <summary>
+    /// This is a pokemon moves controller that lets you search a move by name and 
+    /// also has delete options
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class PokemonController : ControllerBase
@@ -25,6 +28,10 @@ namespace MSA.backend.Api.Controllers
         }
         
         
+        ///// <summary>
+        ///// This is a function to get raw pokemon data :)
+        //</summary>///
+        
         [HttpGet]
         [Route("GetPokemon")]
         [ProducesResponseType(200)]
@@ -35,7 +42,10 @@ namespace MSA.backend.Api.Controllers
             return Ok(content);
         }
 
-
+        /// <summary>
+        /// This function allows you to add a move by a pokemon name
+        /// </summary>
+      
         [HttpPost]
         [Route("addMoveByName")]
         [ProducesResponseType(201)]
@@ -69,6 +79,12 @@ namespace MSA.backend.Api.Controllers
                     ability);
 
         }
+
+        /// <summary>
+        /// This function stores the pokemon move
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("getMoves")]
         [ProducesResponseType(200)]
@@ -84,7 +100,10 @@ namespace MSA.backend.Api.Controllers
             }
 
         }
-
+        /// <summary>
+        /// This function allows you to delete the move from data
+        /// </summary>
+        
         [HttpDelete]
         [Route("deleteMove")]
         [ProducesResponseType(204)]

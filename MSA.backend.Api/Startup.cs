@@ -28,9 +28,9 @@ namespace MSA.backend.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient("pokemon", configureClient: client =>
+            services.AddHttpClient(Configuration["PokemonClientName"], configureClient: client =>
             {
-                client.BaseAddress = new Uri("https://pokeapi.co/api/v2/");
+                client.BaseAddress = new Uri(Configuration["PokemonAddress"]);
             });
             services.AddControllers();
             services.AddDbContext<IWebAPIDBContext, WebAPIDBContext>(options => options.UseSqlite(Configuration.GetConnectionString("ConnectionString")));

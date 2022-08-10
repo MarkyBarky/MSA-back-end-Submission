@@ -4,5 +4,28 @@
         <name>MSA.backend.Api</name>
     </assembly>
     <members>
+        <member name="T:MSA.backend.Api.Controllers.PokemonController">
+            <summary>
+            This is a pokemon moves controller that lets you search a move by name and 
+            also has delete options
+            </summary>
+        </member>
+        <member name="M:MSA.backend.Api.Controllers.PokemonController.getMoves(System.String)">
+            <summary>
+            This function allows you to add a move by a pokemon name
+            </summary>
+        </member>
+        <member name="M:MSA.backend.Api.Controllers.PokemonController.GetMovesByName(System.String)">
+            <summary>
+            This function stores the data
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MSA.backend.Api.Controllers.PokemonController.deleteMove(System.String)">
+            <summary>
+            This function allows you to delete the move from data
+            </summary>
+        </member>
     </members>
 </doc>
