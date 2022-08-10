@@ -1,4 +1,4 @@
-# MSA-back-end-Submission
+# MSA-back-end-Submission-pokemon-API
 submission for back-end with pokemon API
 
 Endpoints of the swagger
