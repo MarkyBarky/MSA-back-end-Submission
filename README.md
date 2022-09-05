@@ -3,6 +3,8 @@ submission for back-end with pokemon API
 
 Endpoints of the swagger
 ![swagger](swagger.PNG)
+postman link
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/873e13e8ec6941ae9d3e?action=collection%2Fimport)
 
 This is a pokemon api that calls the poke.api to retrieve the moves of the pokemons. 
 It is very simple and all that is required is to type in a pokemon's name and 

@@ -49,14 +49,14 @@ namespace MSA.backend.Api.Controllers
         [HttpPost]
         [Route("addMoveByName")]
         [ProducesResponseType(201)]
-        [ProducesResponseType(404)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> getMoves(string name)
         {
             var res = await _client.GetAsync("pokemon/" + name);
             var content = await res.Content.ReadAsStringAsync();
             if (content == "Not Found")
             {
-                return NotFound("not a pokemon!");
+                return BadRequest("not a pokemon!");
             }
             int begin = content.IndexOf("moves") + 8;
             string result1 = content.Substring(begin);
@@ -66,11 +66,11 @@ namespace MSA.backend.Api.Controllers
             int end = comb.Substring(start).IndexOf("\",");
             var comb2 = comb.Substring(start, end);
 
-            Move skill = new Move { move = comb2};
+            Move skill = new Move { move = comb2, name = name};
             
             if (_repo.GetMoveByName(skill.move) != null)
             {
-                return NotFound("already in the skillset!");
+                return BadRequest("already in the skillset!");
             }
             Move ability = _repo.addMoves(skill);
 
