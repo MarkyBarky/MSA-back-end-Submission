@@ -165,3 +165,5 @@ C:\Users\chall\Desktop\MSA-back-end-Submission\UnitTest\bin\Debug\net5.0\runtime
 C:\Users\chall\Desktop\MSA-back-end-Submission\UnitTest\bin\Debug\net5.0\MSA.backend.Api.dll
 C:\Users\chall\Desktop\MSA-back-end-Submission\UnitTest\bin\Debug\net5.0\MSA.backend.Api.pdb
 C:\Users\chall\Desktop\MSA-back-end-Submission\UnitTest\bin\Debug\net5.0\MSA.backend.Api.xml
+C:\Users\chall\Desktop\MSA-back-end-Submission\UnitTest\bin\Debug\net5.0\FluentValidation.dll
+C:\Users\chall\Desktop\MSA-back-end-Submission\UnitTest\bin\Debug\net5.0\FluentAssertions.dll

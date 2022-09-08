@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "07fiw2q9JCrrNG4EVdzcbR5bRCVpsL5Z+WMF6/B/Ye+JmombC8t2HFSY+414gSSV1J9pSCXr1lbFbK4jntgLuA==",
+  "dgSpecHash": "o2BxPvmhRLy86FaJAiyXre+TUlmAJfmNZftULcJUvGc7loarSSYkYF3+euU4yabX1vjLxcTmLfU5o0R6WyPkow==",
   "success": true,
   "projectFilePath": "C:\\Users\\chall\\Desktop\\MSA-back-end-Submission\\MSA.backend.Api\\MSA.backend.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chall\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\chall\\.nuget\\packages\\castle.core\\5.1.0\\castle.core.5.1.0.nupkg.sha512",
     "C:\\Users\\chall\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\chall\\.nuget\\packages\\fluentassertions\\6.7.0\\fluentassertions.6.7.0.nupkg.sha512",
+    "C:\\Users\\chall\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
     "C:\\Users\\chall\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\chall\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\chall\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.17\\microsoft.data.sqlite.core.5.0.17.nupkg.sha512",

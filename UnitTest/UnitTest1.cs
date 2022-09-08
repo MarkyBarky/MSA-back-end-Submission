@@ -11,6 +11,8 @@ using MSA.backend.Api.Controllers;
 using System.Net.Http;
 using NSubstitute;
 using Microsoft.AspNetCore.Mvc;
+using FluentValidation.Results;
+using FluentAssertions;
 
 namespace UnitTest
 {
@@ -23,6 +25,7 @@ namespace UnitTest
         IHttpClientFactory client = null;
         IWebAPIDBContext dbContextMock = null;
 
+        myValidator validator = new myValidator();
         [SetUp]
         public void Setup()
         {
@@ -71,26 +74,35 @@ namespace UnitTest
             var con = new PokemonController(client, repos);
 
             IActionResult deletedMove = con.deleteMove("mega-punch");
-            Assert.IsNotNull(deletedMove);
+            
+            deletedMove.Should().NotBeNull();
+
 
             IActionResult notDeleted = con.deleteMove("belly-drum");
-            Assert.IsNotNull(notDeleted);
-
-            Assert.AreEqual(true, deleted);
+            notDeleted.Should().NotBeNull();
+            deleted.Should().BeTrue();
         }
 
         [Test]
         public async Task Test_Repository_and_DBContext()
         {
             var data = repo.GetMoveByName("mega-punch");
-            Assert.AreEqual("mega-punch", data.move);
+            ValidationResult validateResult3 = validator.Validate(data);
+            validateResult3.IsValid.Should().BeTrue();
+
+            data.move.Should().Be("mega-punch");
+
+            Move slam = new Move { move = "ice-punch", name = "froslass" };
+            var data2 = repo.updateMoves(slam);
+            ValidationResult validateResult4 = validator.Validate(data2);
+            validateResult4.IsValid.Should().BeTrue();
+            data2.move.Should().Be("ice-punch");
+
         }
 
         [Test]
         public async Task getMove()
         {
-
-            
 
             var repos = Substitute.For<iDbRepo>();
 
@@ -99,19 +111,48 @@ namespace UnitTest
             var con = new PokemonController(client, repos);
 
             IActionResult gottenMove = con.GetMovesByName("mega-punch");
-            Assert.IsNotNull(gottenMove);
+            gottenMove.Should().NotBeNull();
 
             var result1 = ((Move)((ObjectResult)gottenMove).Value);
+            ValidationResult validateResult = validator.Validate(result1);
+            
+            validateResult.IsValid.Should().BeTrue();
 
             IActionResult notAMove = con.GetMovesByName("belly-drum");
-            Assert.IsNotNull(notAMove);
+            notAMove.Should().NotBeNull();
 
             var result2 = ((string)((ObjectResult)notAMove).Value);
+            
+            result1.move.Should().Be("mega-punch");
+            result2.Should().Be("No pokemon with the move belly-drum");
 
-            Assert.AreEqual("mega-punch", result1.move);
-            Assert.AreEqual("No pokemon with the move belly-drum", result2);
+
 
         }
 
+        [Test]
+        public async Task updateMoves()
+        {
+            Boolean moveChanged = false;
+            var repository = Substitute.For<iDbRepo>();
+            repository.GetMoveByName("mega-punch")
+                .Returns(new Move { move = "mega-punch", name = "snorlax"});
+            repository.When(x => x.updateMoves(Arg.Any<Move>()))
+                .Do(x => moveChanged = true);
+            var c = new PokemonController(client, repository);
+
+            IActionResult updateMove = c.updateMoves("mega-punch", "clefable");
+            updateMove.Should().NotBeNull();
+            var result1 = ((Move)((ObjectResult)updateMove).Value);
+            
+            moveChanged.Should().BeTrue();
+
+            moveChanged = false;
+            IActionResult updateMove2 = c.updateMoves("hurricane", "groudon");
+            
+            updateMove2.Should().NotBeNull();
+            Assert.IsNotInstanceOf<Move>(updateMove2);
+            moveChanged.Should().BeFalse();
+        }
     }
 }

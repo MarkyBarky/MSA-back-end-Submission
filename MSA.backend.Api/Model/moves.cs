@@ -10,7 +10,7 @@ namespace MSA.backend.Api.Model
     {
         [Key]
         public string move { get; set; }
-
+        [Required]
         public string name { get; set; }
 
         

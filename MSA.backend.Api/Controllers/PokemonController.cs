@@ -138,7 +138,7 @@ namespace MSA.backend.Api.Controllers
             }
             else
             {
-                return BadRequest("The pokemon " + moveName + " does not exist.");
+                return BadRequest("The move " + moveName + " does not exist.");
             }
 
         }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ro4XYJKyxTAi6V9iSRhd3Mn0mMq3blEzclWOU89fjXXX64SGT79rAhc+1ie3P6JQkcIusnC65o36Jh88zuJm5g==",
+  "dgSpecHash": "+gKA7atQNteqoWdGSRRoNLLwyBdYfErAMbarC98A2OrMagmaUQIXkt7Ia0JeQeJe+NM8wJj79YbT8OZ96/+r5w==",
   "success": true,
   "projectFilePath": "C:\\Users\\chall\\Desktop\\MSA-back-end-Submission\\UnitTest\\UnitTest.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,8 @@
     "C:\\Users\\chall\\.nuget\\packages\\castle.core\\5.1.0\\castle.core.5.1.0.nupkg.sha512",
     "C:\\Users\\chall\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
     "C:\\Users\\chall\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\chall\\.nuget\\packages\\fluentassertions\\6.7.0\\fluentassertions.6.7.0.nupkg.sha512",
+    "C:\\Users\\chall\\.nuget\\packages\\fluentvalidation\\11.2.1\\fluentvalidation.11.2.1.nupkg.sha512",
     "C:\\Users\\chall\\.nuget\\packages\\microsoft.codecoverage\\16.9.4\\microsoft.codecoverage.16.9.4.nupkg.sha512",
     "C:\\Users\\chall\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\chall\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.17\\microsoft.data.sqlite.core.5.0.17.nupkg.sha512",
